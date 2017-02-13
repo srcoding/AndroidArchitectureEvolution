@@ -1,7 +1,7 @@
-package com.example.shaorui.androidarchitectureevolution.bean;
+package com.example.shaorui.androidarchitectureevolution.user.data;
 
 /**
- * Created by shaorui on 17/2/12.
+ * Created by shaorui on 17/2/13.
  */
 public class UserInfoBean {
     private String name;

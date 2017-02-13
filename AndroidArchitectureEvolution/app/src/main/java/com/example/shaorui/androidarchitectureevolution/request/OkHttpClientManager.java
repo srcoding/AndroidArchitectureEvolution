@@ -6,7 +6,7 @@ import android.os.SystemClock;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.example.shaorui.androidarchitectureevolution.bean.UserInfoBean;
+import com.example.shaorui.androidarchitectureevolution.user.data.UserInfoBean;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
