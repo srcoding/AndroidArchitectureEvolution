@@ -1,8 +1,11 @@
 package com.example.shaorui.androidarchitectureevolution.user.fragment;
 
-import com.example.shaorui.androidarchitectureevolution.request.OkHttpClientManager;
+import com.example.shaorui.androidarchitectureevolution.network.request.RetrofitManager;
+import com.example.shaorui.androidarchitectureevolution.network.response.MyResponse;
 import com.example.shaorui.androidarchitectureevolution.user.data.UserInfoBean;
 import com.example.shaorui.androidarchitectureevolution.user.data.source.IUserInfoSource;
+
+import retrofit2.Call;
 
 /**
  * Created by shaorui on 17/2/13.
@@ -22,15 +25,15 @@ public class UserInfoPresenter implements UserInfoContract.IPresenter<UserInfoCo
     }
 
     private void getUserInfo() {
-        mUserInfoRepository.getUserInfo("http://com.meizu.com/mock/userInfo", new OkHttpClientManager.ResultCallback<UserInfoBean>() {
+        mUserInfoRepository.getUserInfo("userId", new RetrofitManager.ResultCallback<MyResponse<UserInfoBean>>() {
             @Override
-            public void onError(Exception e) {
-                mView.onLoadError(e.getMessage());
+            public void onFailure(Call<MyResponse<UserInfoBean>> call, Throwable t) {
+                mView.onLoadError(t.getMessage());
             }
 
             @Override
-            public void onResponse(UserInfoBean response) {
-                mView.onLoadSuccess(response);
+            public void onResponse(MyResponse<UserInfoBean> response) {
+                mView.onLoadSuccess(response.getData());
             }
         });
     }
