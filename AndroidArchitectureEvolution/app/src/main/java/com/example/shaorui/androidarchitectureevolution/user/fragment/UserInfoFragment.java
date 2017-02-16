@@ -30,7 +30,7 @@ public class UserInfoFragment extends Fragment implements UserInfoContract.IView
 
     public static UserInfoFragment newInstance() {
         UserInfoFragment fragment = new UserInfoFragment();
-        new UserInfoPresenter(new UserInfoRepository());
+        new UserInfoPresenter(fragment, new UserInfoRepository());
         return fragment;
     }
 

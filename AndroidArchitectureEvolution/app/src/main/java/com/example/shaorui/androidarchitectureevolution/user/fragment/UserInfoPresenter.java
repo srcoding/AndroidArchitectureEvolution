@@ -14,7 +14,9 @@ public class UserInfoPresenter implements UserInfoContract.IPresenter<UserInfoCo
     private UserInfoContract.IView mView;
     private IUserInfoSource mUserInfoRepository;
 
-    public UserInfoPresenter(IUserInfoSource userInfoRepository) {
+    public UserInfoPresenter(UserInfoContract.IView view, IUserInfoSource userInfoRepository) {
+        mView = view;
+        mView.setPresenter(this);
         mUserInfoRepository = userInfoRepository;
     }
 
@@ -41,7 +43,6 @@ public class UserInfoPresenter implements UserInfoContract.IPresenter<UserInfoCo
     @Override
     public void doViewAttach(UserInfoContract.IView view) {
         mView = view;
-        mView.setPresenter(this);
     }
 
     @Override
