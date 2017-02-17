@@ -126,15 +126,4 @@ public class RetrofitManager {
             String KEY_NETWORK_TYPE = "nt";
         }
     }
-
-    /**
-     * Retrofit请求的Callback
-     * @param <T>
-     */
-    public interface ResultCallback<T> {
-
-        void onFailure(Call<T> call, Throwable t);
-
-        void onResponse(T response);
-    }
 }

@@ -15,7 +15,7 @@ public interface UserInfoContract {
         void onLoadSuccess(UserInfoBean data);
     }
 
-    interface IPresenter<T extends IBaseView> extends IBasePresenter<T> {
+    interface IPresenter extends IBasePresenter {
         void doGetUserInfo();
     }
 }
