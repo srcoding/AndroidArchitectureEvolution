@@ -1,5 +1,6 @@
 package com.example.shaorui.androidarchitectureevolution.user.fragment;
 
+import com.example.shaorui.androidarchitectureevolution.network.callback.RetrofitCallback;
 import com.example.shaorui.androidarchitectureevolution.network.request.RetrofitManager;
 import com.example.shaorui.androidarchitectureevolution.network.response.MyResponse;
 import com.example.shaorui.androidarchitectureevolution.user.data.UserInfoBean;
@@ -27,7 +28,7 @@ public class UserInfoPresenter implements UserInfoContract.IPresenter<UserInfoCo
     }
 
     private void getUserInfo() {
-        mUserInfoRepository.getUserInfo("userId", new RetrofitManager.ResultCallback<MyResponse<UserInfoBean>>() {
+        mUserInfoRepository.getUserInfo("userId").enqueue(new RetrofitCallback<>(new RetrofitManager.ResultCallback<MyResponse<UserInfoBean>>() {
             @Override
             public void onFailure(Call<MyResponse<UserInfoBean>> call, Throwable t) {
                 mView.onLoadError(t.getMessage());
@@ -37,7 +38,7 @@ public class UserInfoPresenter implements UserInfoContract.IPresenter<UserInfoCo
             public void onResponse(MyResponse<UserInfoBean> response) {
                 mView.onLoadSuccess(response.getData());
             }
-        });
+        }));
     }
 
     @Override

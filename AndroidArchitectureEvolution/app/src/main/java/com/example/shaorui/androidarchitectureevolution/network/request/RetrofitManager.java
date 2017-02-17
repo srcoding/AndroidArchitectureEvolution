@@ -2,6 +2,7 @@ package com.example.shaorui.androidarchitectureevolution.network.request;
 
 
 import com.example.shaorui.androidarchitectureevolution.network.converter.FastjsonConverterFactory;
+import com.example.shaorui.androidarchitectureevolution.network.mock.UserInfoMockInterceptor;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class RetrofitManager {
     private static final String TAG = "RetrofitManager";
 
     //务必以/结尾
-    private static final String BASE_URL = "https://xxx.meizu.com/xxx/";
+    public static final String BASE_URL = "https://test.meizu.com/serve/";
 
     private static final Object LOCK = new Object();
 
@@ -65,6 +66,7 @@ public class RetrofitManager {
         //mall
         OkHttpClient myOkHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(logInterceptor)
+                .addInterceptor(new UserInfoMockInterceptor())
                 .retryOnConnectionFailure(true)
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .addNetworkInterceptor(defaultParamsInterceptor)
